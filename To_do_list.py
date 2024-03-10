@@ -25,14 +25,18 @@ def update_wind():
         with open(list_path,'r') as f:
             lst=f.readlines()
         entry_val=entry.get()
-        if entry_val.strip() not in lst:
+        f.close()
+        con=True
+        for i in lst:
+            if entry_val.strip()==i.strip():
+                con=False
+                status_label.config(text='Already exists')
+                break
+        if con==True:
             with open(list_path,'a+') as file:
                 file.write(f'\n{entry_val}')
             file.close()
-            status_label.config(text='Updated Successfully')
-        else:
-            status_label.config(text='Already exists')
-        f.close()
+            status_label.config(text='Updated Successfully')      
     display=tk.Toplevel(main)
     display.title('Update')
     display.geometry('400x300')
@@ -50,16 +54,19 @@ def delete_win():
         with open(list_path,'r') as file:
             lst=file.readlines()
         entry_val=entry.get()
-        if entry_val.strip() in lst:
-            with open(list_path,'w') as f:
-                for i in lst:
-                    if i.strip()!=entry_val.strip():
-                        f.write(i)
-            status_label.config(text='Deleted Successfully')
-            f.close()
-        else:
+        with open(list_path,'w') as f:
+            for i in lst:
+                if i.strip()!=entry_val.strip():
+                    f.write(i)
+        f.close()
+        file.close()
+        with open(list_path,'r') as file:
+            lst2=file.readlines()
+        if lst2==lst:
             status_label.config(text="Doesn't exists")
-        file.close()       
+        else:
+            status_label.config(text='Deleted Successfully')    
+        file.close()  
     display=tk.Toplevel()
     display.title('Delete Content')
     display.geometry('400x300')
@@ -72,6 +79,11 @@ def delete_win():
     status_label= tk.Label(display,font=('Calibri',15),fg='red')
     status_label.pack(pady=10)
 
+def delete_a():
+    with open(list_path,'w') as f:
+        f.write('')
+    f.close()
+    
 main=tk.Tk()
 main.title('To Do List')
 main.geometry('400x400')
@@ -83,4 +95,6 @@ update_lst=tk.Button(main,text='Update List',font=('Calibri',15),command=lambda:
 update_lst.pack(pady=20)
 delete_content=tk.Button(main,text='Delete Content',font=('Calibri',15),command=lambda: delete_win())
 delete_content.pack(pady=20)
+delete_all=tk.Button(main,text='Delete All',font=('Calibri',15),command=lambda: delete_a())
+delete_all.pack(pady=20)
 main.mainloop()
