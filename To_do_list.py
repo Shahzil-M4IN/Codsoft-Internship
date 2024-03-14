@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import messagebox
 
 program_dir=os.path.dirname(os.path.abspath(__file__))
 program_path=os.path.join(program_dir,'To_do_list.py')
@@ -27,6 +28,8 @@ def update_wind():
         entry_val=entry.get()
         f.close()
         con=True
+        if entry_val.strip()=='':
+            con=False
         for i in lst:
             if entry_val.strip()==i.strip():
                 con=False
