@@ -1,6 +1,5 @@
 import os
 import tkinter as tk
-from tkinter import messagebox
 
 program_dir=os.path.dirname(os.path.abspath(__file__))
 program_path=os.path.join(program_dir,'To_do_list.py')
