@@ -27,7 +27,7 @@ def display():
         count=0
         for line in lines:
             count+=1
-            string=line.split()
+            string=line.split('|')
             for i in range(0,len(string)):
                 contact=tk.Label(wind,text=f'{string[i]}\t',font=('Calibri',15),bg='Light Grey')
                 contact.grid(row=count,column=i)
@@ -46,12 +46,13 @@ def update_wind():
         if (name_entry_val.strip()=='') or (number_entry_val.strip()=='') or (email_entry_val.strip()=='') or (address_entry_val.strip()==''):
             con=False
         for i in lst:
-            if (name_entry_val.strip() in i) or (number_entry_val.strip() in i) or (email_entry_val.strip() in i):
+            st=i.split('|')
+            if (name_entry_val.strip() in st) or (number_entry_val.strip() in st) or (email_entry_val.strip() in st):
                 con=False
                 break
         if con==True:
             with open(list_path,'a+') as file:
-                file.write(f'\n{name_entry_val} {number_entry_val} {email_entry_val} {address_entry_val}')
+                file.write(f'\n{name_entry_val}|{number_entry_val}|{email_entry_val}|{address_entry_val}|')
             file.close()
             status_label.config(text='Updated Successfully')
         else:
@@ -91,7 +92,7 @@ def delete_win():
         name_entry_val=name_entry.get()
         with open(list_path,'w') as f:
             for i in lst:
-                l=i.split()
+                l=i.split('|')
                 if name_entry_val.strip() not in l:
                     f.write(i)
         f.close()
