@@ -1,4 +1,4 @@
-#To_do_list.txt is an important file to make this py program work
+#To_do_list.txt is an important file to make this py program work. Get it from Shahzil-M4IN's github repositry Codsoft internship
 import os
 import tkinter as tk
 
