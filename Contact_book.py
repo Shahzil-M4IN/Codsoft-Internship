@@ -1,4 +1,4 @@
-#Contact_book.txt is an important file to make this py program work
+#Contact_book.txt is an important file to make this py program work. Get it from Shahzil-M4IN's github repositry Codsoft internship
 import os
 import tkinter as tk
 from tkinter import font
