@@ -1,3 +1,4 @@
+#hi_score.txt is an important file to make this py program work. Get it from Shahzil-M4IN's github repositry Codsoft internship
 import os
 from tkinter import *
 import random
