@@ -35,6 +35,11 @@ def gen(length_val,complexity_val):
     except Exception as e:
         messagebox.showerror('Alert','Error: Perhaps you forgot to pick length?')
 
+def desc():
+    text='''Silghtly Complex:\nStarts with a capital letter, continues with small letters, 3rd and 2nd last characters are numeric and final character is a special character.
+    \n\nHighly Complex:\ngenerates a random and inconsistent pattern.'''
+    messagebox.showinfo('Explainations',message=text)
+
 main=tk.Tk()
 main.title('Password Generator')
 main.geometry('500x500')
@@ -54,6 +59,8 @@ complexity_picks=tk.OptionMenu(main,complexity_val,*complexities)
 complexity_picks.pack()
 Generate_button=tk.Button(main,text='Generate',font=('Calibri',15),command=lambda: gen(length_val,complexity_val))
 Generate_button.pack(pady=30)
+complexity_desc=tk.Button(main,text='Complexity descriptions',font=('Calibri',15),command=lambda: desc())
+complexity_desc.pack()
 Password_label=tk.Label(main,font=('Calibri',15),fg='Grey')
 Password_label.pack(pady=10)
 main.mainloop()
